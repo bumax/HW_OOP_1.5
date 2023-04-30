@@ -96,7 +96,10 @@ public class View {
      */
     public String getStrValue(String msg) {
         System.out.println("Введите " + msg + " (строка):");
-        return scan.nextLine();
+        String line = new String();
+        while(line.isEmpty())
+            line = scan.nextLine();
+        return line;
     }
 
 }

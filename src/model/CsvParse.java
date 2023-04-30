@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class CsvParse extends Parser {
 
     public CsvParse(String filename) throws FileNotFoundException {
-        super(parce(filename));
+        super(parse(filename));
 
     }
 
@@ -20,7 +20,7 @@ public class CsvParse extends Parser {
      * @return
      * @throws FileNotFoundException
      */
-    private static ArrayList<User> parce(String filename) throws FileNotFoundException {
+    private static ArrayList<User> parse(String filename) throws FileNotFoundException {
         ArrayList<User> res = new ArrayList<>();
 
         try (Reader in = new InputStreamReader(new FileInputStream(filename), "windows-1251")) {

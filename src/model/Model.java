@@ -14,11 +14,11 @@ public class Model {
         return  pb.addContact(contact);
     }
 
-    public boolean removeContact(User contact){
-        return  pb.removeContact(contact);
+    public boolean removeContact(String phonenumber){
+        return  pb.removeContact(phonenumber);
     }
-    public int updateContact(User contact){
-        return  pb.updateContact(contact);
+    public int updateContact(String phonenumber, User contact){
+        return  pb.updateContact(phonenumber, contact);
     }
     public User findContact(String phoneNumber){
         return  pb.findContact(phoneNumber);

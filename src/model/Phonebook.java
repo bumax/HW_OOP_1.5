@@ -31,18 +31,19 @@ public class Phonebook {
         return true;
     }
 
-    public boolean removeContact(User newContact) {
-        if (isSetContact(newContact))
+    public boolean removeContact(String phonenumber) {
+        if (!contacts.containsKey(phonenumber))
             return false;
-        contacts.remove(newContact.getPhone().getData());
+        contacts.remove(phonenumber);
         return true;
     }
 
-    public int updateContact(User updContact) {
-        if (isSetContact(updContact))
+    public int updateContact(String phonenumber, User updContact) {
+        if (!contacts.containsKey(phonenumber))
             return -1; // Нет такого контакта
         if (updContact.equals(contacts.get(updContact.getPhone().getData())))
             return 0; // Нечего обновлять
+        contacts.remove(phonenumber);
         contacts.put(updContact.getPhone().getData(), updContact);
         return 1; // Обновление прошло успешно
     }
@@ -59,7 +60,12 @@ public class Phonebook {
         }
     }
     public void exportData(Exporter exporter) throws BackingStoreException, IOException, ParserConfigurationException, TransformerException, SAXException {
-        exporter.export((User[])contacts.entrySet().toArray());
+        User[] usr = new User[contacts.size()];
+        int cnt = 0;
+        for (String ks : contacts.keySet()) {
+            usr[cnt++] = contacts.get(ks);
+        }
+        exporter.export(usr);
     }
 
     private Map<String, User> contacts;
